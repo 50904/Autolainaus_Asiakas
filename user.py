@@ -133,6 +133,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.carInfoLabel.hide()
         self.ui.okPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.ui.okPushButton.setEnabled(True)
+        self.ui.availablePlainTextEdit.clear()
+        self.ui.inUsePlainTextEdit.clear()
+
 
         # Palautetaan auton oletuskuva
         self.ui.vehiclePictureLabel.setPixmap(self.defaultVehiclePicture)
@@ -146,10 +149,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             # Luodaan tietokantayhteys-olio
             dbConnection = dbOperations.DbConnection(dbSettings)
-            inUseVehicles = dbConnection.readAllColumnsFromTable('ajossa')
+            # Luetaan ajossa näkymästä lista, jonka jäsenet ovat monikoita (tuple)
+            InUseVehicles = dbConnection.readAllColumnsFromTable('ajossa')
+
+            # Alustetaan tyhjä lista muokattuja autotietoja varten
+            modifiedInUseVehiclesList = []
+
+            # Alustetaan tyhjä lista, jotta monikkoon voi tehdä muutoksia
+            
+
+            # Käydään lista läpi ja lisätään monikon alkiot listaan
+            for vehicleTuple in InUseVehicles:  
+                modifiedInUseVehicles = []
+                modifiedInUseVehicles.append(vehicleTuple[0])
+                modifiedInUseVehicles.append(vehicleTuple[1])
+                modifiedInUseVehicles.append(vehicleTuple[2])
+                modifiedInUseVehicles.append(vehicleTuple[3])
+                modifiedInUseVehicles.append(vehicleTuple[4])
+               
+                # Lisätään sana paikkaan
+                modifiedInUseVehicles.append('paikkaa')
+                modifiedInUseVehicles.append(vehicleTuple[5])
+
+                # Muutetaan lista takaisin monikoksi
+                modifiedInUseVehicleTuple = tuple(modifiedInUseVehicles)
+
+                # Lisätään monikko lopulliseen listaan
+                modifiedInUseVehiclesList.append(modifiedInUseVehicleTuple)
             
             # Muodostetaan luettelo vapaista autoista createCatalog-metodilla
-            catalogData = self.createCatalog(inUseVehicles)
+            catalogData = self.createCatalog(modifiedInUseVehiclesList)
+            print(modifiedInUseVehiclesList)
+            print(catalogData)
             self.ui.inUsePlainTextEdit.setPlainText(catalogData)
 
         except Exception as e:
@@ -172,6 +203,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             text = 'Vapaana olevien autojen tiedot eivät ole saatavissa'
             detailedText = str(e)
             self.openWarning(title, text, detailedText)
+        
+         # Aktivoidaan lainaus ja palautuspainikkeet, jos lainattavia tai palautettavia autoja
+        print('Vapaana:', self.ui.availablePlainTextEdit.toPlainText())
+        print('Ajossa:', self.ui.inUsePlainTextEdit.toPlainText())
+        if self.ui.availablePlainTextEdit.toPlainText() == '':
+            self.ui.takeCarPushButton.setEnabled(False)
+        else:
+            self.ui.takeCarPushButton.setEnabled(True)
+        
+        if self.ui.inUsePlainTextEdit.toPlainText() == '':
+            self.ui.returnCarPushButton.setEnabled(False)
+        else:
+            self.ui.takeCarPushButton.setEnabled(True)
 
     # Näyttää lainaajan kuvakkeen ja henkilötunnuksen kentän
     @Slot()
@@ -352,7 +396,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.returnCarPushButton.hide()
         self.ui.statusLabel.setText('Auton palautus')
         self.ui.keyPictureLabel.show()
+        self.ui.registerPlateBGLabel.show()
         self.ui.keyReturnBarcodeLineEdit.show()
+        self.ui.goBackPushButton.show()
         self.ui.keyReturnBarcodeLineEdit.setFocus()
         self.ui.statusbar.showMessage('Lue avaimen viivakoodi')
         if self.ui.soundCheckBox.isChecked():
@@ -404,7 +450,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             rowData = ''
             for vehicleData in vehiclTtuple:
                 vehicleDataAsStr = str(vehicleData)
-                print(vehicleDataAsStr)
                 if vehicleDataAsStr == 'True':
                     replacedVehicleData = 'automaatti'
                 elif vehicleDataAsStr == 'False':
@@ -412,9 +457,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 else:
                     replacedVehicleData = vehicleDataAsStr
                 # replacedVehicleData = vehicleDataAsStr.replace('False', '')
-                print(replacedVehicleData)
                 rowData = rowData + f'{replacedVehicleData} '
-                print(rowData)
+                
                 
             rowText = rowData + f'{suffix}\n'
             catalogData = catalogData + rowText
