@@ -16,23 +16,35 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QLabel, QLineEdit, QMainWindow, QMenu,
-    QMenuBar, QPlainTextEdit, QPushButton, QSizePolicy,
-    QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QLabel,
+    QLineEdit, QMainWindow, QMenu, QMenuBar,
+    QPlainTextEdit, QPushButton, QSizePolicy, QStatusBar,
+    QWidget)
 import userUiRescources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1148, 781)
-        icon = QIcon(QIcon.fromTheme(u"emblem-shared"))
+        MainWindow.resize(1134, 781)
+        icon = QIcon()
+        iconThemeName = u"emblem-shared"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon = QIcon.fromTheme(iconThemeName)
+        else:
+            icon.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"background-color: rgb(223, 32, 112);")
         self.actionLopeta = QAction(MainWindow)
         self.actionLopeta.setObjectName(u"actionLopeta")
-        icon1 = QIcon(QIcon.fromTheme(u"application-exit"))
+        icon1 = QIcon()
+        iconThemeName = u"application-exit"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon1 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon1.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionLopeta.setIcon(icon1)
         self.actionKalle = QAction(MainWindow)
         self.actionKalle.setObjectName(u"actionKalle")
@@ -55,7 +67,7 @@ class Ui_MainWindow(object):
         self.ssnLineEdit.setFont(font)
         self.ssnLineEdit.setStyleSheet(u"background-color: rgb(255, 255, 127);\n"
 "color: rgb(32, 75, 70);")
-        self.ssnLineEdit.setEchoMode(QLineEdit.EchoMode.Normal)
+        self.ssnLineEdit.setEchoMode(QLineEdit.Normal)
         self.ssnLineEdit.setClearButtonEnabled(True)
         self.keyBarcodeLineEdit = QLineEdit(self.centralwidget)
         self.keyBarcodeLineEdit.setObjectName(u"keyBarcodeLineEdit")
@@ -73,7 +85,7 @@ class Ui_MainWindow(object):
         self.takeCarPushButton.setFont(font1)
         self.takeCarPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.takeCarPushButton.setTabletTracking(False)
-        self.takeCarPushButton.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.takeCarPushButton.setFocusPolicy(Qt.NoFocus)
         self.takeCarPushButton.setToolTipDuration(3000)
         self.takeCarPushButton.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(140, 51 ,85);\n"
@@ -175,7 +187,7 @@ class Ui_MainWindow(object):
         self.statusFrame = QFrame(self.centralwidget)
         self.statusFrame.setObjectName(u"statusFrame")
         self.statusFrame.setGeometry(QRect(10, 100, 811, 391))
-        self.statusFrame.setFrameShape(QFrame.Shape.NoFrame)
+        self.statusFrame.setFrameShape(QFrame.NoFrame)
         self.statusFrame.setLineWidth(0)
         self.availablePlainTextEdit = QPlainTextEdit(self.statusFrame)
         self.availablePlainTextEdit.setObjectName(u"availablePlainTextEdit")
@@ -186,7 +198,7 @@ class Ui_MainWindow(object):
         self.availablePlainTextEdit.setFont(font7)
         self.availablePlainTextEdit.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "")
-        self.availablePlainTextEdit.setFrameShape(QFrame.Shape.NoFrame)
+        self.availablePlainTextEdit.setFrameShape(QFrame.NoFrame)
         self.availablePlainTextEdit.setLineWidth(4)
         self.availablePlainTextEdit.setMidLineWidth(0)
         self.availablePlainTextEdit.setReadOnly(True)
@@ -197,7 +209,7 @@ class Ui_MainWindow(object):
         self.inUsePlainTextEdit.setFont(font7)
         self.inUsePlainTextEdit.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "border-color: rgb(255, 255, 255);")
-        self.inUsePlainTextEdit.setFrameShape(QFrame.Shape.NoFrame)
+        self.inUsePlainTextEdit.setFrameShape(QFrame.NoFrame)
         self.inUsePlainTextEdit.setLineWidth(8)
         self.line = QFrame(self.statusFrame)
         self.line.setObjectName(u"line")
@@ -216,10 +228,6 @@ class Ui_MainWindow(object):
         self.inUseLabel.setGeometry(QRect(650, 10, 131, 31))
         self.inUseLabel.setFont(font1)
         self.inUseLabel.setStyleSheet(u"color: rgb(255, 255, 255);")
-        self.reasonComboBox = QComboBox(self.statusFrame)
-        self.reasonComboBox.setObjectName(u"reasonComboBox")
-        self.reasonComboBox.setGeometry(QRect(321, 11, 271, 41))
-        self.reasonComboBox.setFont(font6)
         self.statusLabel = QLabel(self.centralwidget)
         self.statusLabel.setObjectName(u"statusLabel")
         self.statusLabel.setGeometry(QRect(220, 20, 441, 91))
@@ -239,18 +247,24 @@ class Ui_MainWindow(object):
         self.soundCheckBox.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "\n"
 "")
-        icon3 = QIcon(QIcon.fromTheme(u"audio-volume-medium"))
+        icon3 = QIcon()
+        iconThemeName = u"audio-volume-medium"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon3 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon3.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.soundCheckBox.setIcon(icon3)
         self.soundCheckBox.setIconSize(QSize(64, 64))
         self.vehiclePictureLabel = QLabel(self.centralwidget)
         self.vehiclePictureLabel.setObjectName(u"vehiclePictureLabel")
         self.vehiclePictureLabel.setGeometry(QRect(140, 460, 341, 241))
-        self.vehiclePictureLabel.setPixmap(QPixmap(u"../../../.designer/backup/uiPictures/OXZ915.png"))
+        self.vehiclePictureLabel.setPixmap(QPixmap(u"uiPictures/OXZ915.png"))
         self.vehiclePictureLabel.setScaledContents(True)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1148, 33))
+        self.menubar.setGeometry(QRect(0, 0, 1134, 21))
         self.menubar.setStyleSheet(u"background-color: rgb(0, 33, 72);\n"
 "color: rgb(255, 255, 255);")
         self.menuTiedosto = QMenu(self.menubar)
@@ -321,8 +335,6 @@ class Ui_MainWindow(object):
         self.inUsePlainTextEdit.setPlainText(QCoreApplication.translate("MainWindow", u"AM-15 Renault Megane 5 henkil\u00f6\u00e4", None))
         self.availableLabel.setText(QCoreApplication.translate("MainWindow", u"VAPAANA", None))
         self.inUseLabel.setText(QCoreApplication.translate("MainWindow", u"AJOSSA", None))
-        self.reasonComboBox.setCurrentText("")
-        self.reasonComboBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ajon tarkoitus", None))
         self.statusLabel.setText(QCoreApplication.translate("MainWindow", u"Tila", None))
         self.soundCheckBox.setText("")
         self.vehiclePictureLabel.setText("")
