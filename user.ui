@@ -14,8 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="emblem-shared">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset theme="emblem-shared"/>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(223, 32, 112);</string>
@@ -46,7 +45,7 @@ color: rgb(32, 75, 70);</string>
      <string/>
     </property>
     <property name="echoMode">
-     <enum>QLineEdit::Normal</enum>
+     <enum>QLineEdit::EchoMode::Normal</enum>
     </property>
     <property name="placeholderText">
      <string>Lue ajokortti</string>
@@ -97,7 +96,6 @@ color: rgb(32, 75, 70);</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -108,7 +106,7 @@ color: rgb(32, 75, 70);</string>
      <bool>false</bool>
     </property>
     <property name="focusPolicy">
-     <enum>Qt::NoFocus</enum>
+     <enum>Qt::FocusPolicy::NoFocus</enum>
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Tallentaa henkilön tiedot tietokantaa&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -147,7 +145,7 @@ border: 5px solid rgb(225, 225, 225,)</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/pictures/uiPictures/keys.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/keys.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -172,7 +170,7 @@ border: 5px solid rgb(225, 225, 225,)</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/pictures/uiPictures/Teacher.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/Teacher.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -214,7 +212,6 @@ border: 5px solid rgb(225, 225, 225,)</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -255,7 +252,7 @@ border: 5px solid rgb(225, 225, 225,)</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/pictures/uiPictures/calendar.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/calendar.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -298,7 +295,7 @@ border: 5px solid rgb(225, 225, 225,)</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/pictures/uiPictures/clock.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/clock.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -316,7 +313,6 @@ border: 5px solid rgb(225, 225, 225,)</string>
     <property name="font">
      <font>
       <pointsize>14</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -331,7 +327,7 @@ color: rgb(255, 255, 255);</string>
      <string>KUMOA</string>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="userUiRescources.qrc">
       <normaloff>:/pictures/uiPictures/back.png</normaloff>:/pictures/uiPictures/back.png</iconset>
     </property>
     <property name="iconSize">
@@ -395,7 +391,6 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>24</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -459,7 +454,7 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
+     <enum>QFrame::Shape::NoFrame</enum>
     </property>
     <property name="lineWidth">
      <number>0</number>
@@ -476,7 +471,6 @@ color: rgb(255, 255, 255);</string>
      <property name="font">
       <font>
        <pointsize>12</pointsize>
-       <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
@@ -485,7 +479,7 @@ color: rgb(255, 255, 255);</string>
 </string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="lineWidth">
       <number>4</number>
@@ -515,7 +509,6 @@ color: rgb(255, 255, 255);</string>
      <property name="font">
       <font>
        <pointsize>12</pointsize>
-       <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
@@ -524,7 +517,7 @@ color: rgb(255, 255, 255);</string>
 border-color: rgb(255, 255, 255);</string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="lineWidth">
       <number>8</number>
@@ -549,7 +542,7 @@ border-color: rgb(255, 255, 255);</string>
       <number>3</number>
      </property>
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
     </widget>
     <widget class="QLabel" name="availableLabel">
@@ -564,7 +557,6 @@ border-color: rgb(255, 255, 255);</string>
      <property name="font">
       <font>
        <pointsize>16</pointsize>
-       <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
@@ -587,7 +579,6 @@ border-color: rgb(255, 255, 255);</string>
      <property name="font">
       <font>
        <pointsize>16</pointsize>
-       <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
@@ -611,7 +602,6 @@ border-color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <pointsize>36</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -651,8 +641,7 @@ border-color: rgb(255, 255, 255);</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset theme="audio-volume-medium">
-      <normaloff>.</normaloff>.</iconset>
+     <iconset theme="audio-volume-medium"/>
     </property>
     <property name="iconSize">
      <size>
@@ -687,7 +676,7 @@ border-color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>1134</width>
-     <height>21</height>
+     <height>33</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -728,8 +717,7 @@ color: rgb(255, 255, 255);</string>
   </widget>
   <action name="actionLopeta">
    <property name="icon">
-    <iconset theme="application-exit">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="application-exit"/>
    </property>
    <property name="text">
     <string>Lopeta</string>

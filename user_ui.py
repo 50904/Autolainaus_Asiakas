@@ -27,24 +27,12 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1134, 781)
-        icon = QIcon()
-        iconThemeName = u"emblem-shared"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon = QIcon.fromTheme(iconThemeName)
-        else:
-            icon.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon = QIcon(QIcon.fromTheme(u"emblem-shared"))
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"background-color: rgb(223, 32, 112);")
         self.actionLopeta = QAction(MainWindow)
         self.actionLopeta.setObjectName(u"actionLopeta")
-        icon1 = QIcon()
-        iconThemeName = u"application-exit"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon1 = QIcon.fromTheme(iconThemeName)
-        else:
-            icon1.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon1 = QIcon(QIcon.fromTheme(u"application-exit"))
         self.actionLopeta.setIcon(icon1)
         self.actionKalle = QAction(MainWindow)
         self.actionKalle.setObjectName(u"actionKalle")
@@ -67,7 +55,7 @@ class Ui_MainWindow(object):
         self.ssnLineEdit.setFont(font)
         self.ssnLineEdit.setStyleSheet(u"background-color: rgb(255, 255, 127);\n"
 "color: rgb(32, 75, 70);")
-        self.ssnLineEdit.setEchoMode(QLineEdit.Normal)
+        self.ssnLineEdit.setEchoMode(QLineEdit.EchoMode.Normal)
         self.ssnLineEdit.setClearButtonEnabled(True)
         self.keyBarcodeLineEdit = QLineEdit(self.centralwidget)
         self.keyBarcodeLineEdit.setObjectName(u"keyBarcodeLineEdit")
@@ -85,7 +73,7 @@ class Ui_MainWindow(object):
         self.takeCarPushButton.setFont(font1)
         self.takeCarPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.takeCarPushButton.setTabletTracking(False)
-        self.takeCarPushButton.setFocusPolicy(Qt.NoFocus)
+        self.takeCarPushButton.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.takeCarPushButton.setToolTipDuration(3000)
         self.takeCarPushButton.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(140, 51 ,85);\n"
@@ -187,7 +175,7 @@ class Ui_MainWindow(object):
         self.statusFrame = QFrame(self.centralwidget)
         self.statusFrame.setObjectName(u"statusFrame")
         self.statusFrame.setGeometry(QRect(10, 100, 811, 391))
-        self.statusFrame.setFrameShape(QFrame.NoFrame)
+        self.statusFrame.setFrameShape(QFrame.Shape.NoFrame)
         self.statusFrame.setLineWidth(0)
         self.availablePlainTextEdit = QPlainTextEdit(self.statusFrame)
         self.availablePlainTextEdit.setObjectName(u"availablePlainTextEdit")
@@ -198,7 +186,7 @@ class Ui_MainWindow(object):
         self.availablePlainTextEdit.setFont(font7)
         self.availablePlainTextEdit.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "")
-        self.availablePlainTextEdit.setFrameShape(QFrame.NoFrame)
+        self.availablePlainTextEdit.setFrameShape(QFrame.Shape.NoFrame)
         self.availablePlainTextEdit.setLineWidth(4)
         self.availablePlainTextEdit.setMidLineWidth(0)
         self.availablePlainTextEdit.setReadOnly(True)
@@ -209,7 +197,7 @@ class Ui_MainWindow(object):
         self.inUsePlainTextEdit.setFont(font7)
         self.inUsePlainTextEdit.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "border-color: rgb(255, 255, 255);")
-        self.inUsePlainTextEdit.setFrameShape(QFrame.NoFrame)
+        self.inUsePlainTextEdit.setFrameShape(QFrame.Shape.NoFrame)
         self.inUsePlainTextEdit.setLineWidth(8)
         self.line = QFrame(self.statusFrame)
         self.line.setObjectName(u"line")
@@ -247,13 +235,7 @@ class Ui_MainWindow(object):
         self.soundCheckBox.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "\n"
 "")
-        icon3 = QIcon()
-        iconThemeName = u"audio-volume-medium"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon3 = QIcon.fromTheme(iconThemeName)
-        else:
-            icon3.addFile(u".", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon3 = QIcon(QIcon.fromTheme(u"audio-volume-medium"))
         self.soundCheckBox.setIcon(icon3)
         self.soundCheckBox.setIconSize(QSize(64, 64))
         self.vehiclePictureLabel = QLabel(self.centralwidget)
@@ -264,7 +246,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1134, 21))
+        self.menubar.setGeometry(QRect(0, 0, 1134, 33))
         self.menubar.setStyleSheet(u"background-color: rgb(0, 33, 72);\n"
 "color: rgb(255, 255, 255);")
         self.menuTiedosto = QMenu(self.menubar)
